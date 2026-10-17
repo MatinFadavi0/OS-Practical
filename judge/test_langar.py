@@ -16,7 +16,7 @@ import time
 
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]
+ROOT = HERE.parent
 CASES = []
 TIMEOUT = 5
 
@@ -237,7 +237,7 @@ def not_a_directory(h):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--binary", type=Path,
-                        default=ROOT / "assignments/hw02/q2/langar")
+                        default=ROOT / "q2/langar")
     parser.add_argument("--cc", default=os.environ.get("CC", "cc"))
     parser.add_argument("--json", type=Path, help="also save a machine-readable result")
     args = parser.parse_args()
