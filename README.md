@@ -1,17 +1,14 @@
 # Operating Systems Practical Resources
 
-Student starter code, public tests, and tools for the Operating Systems course.
-The course LaTeX handout is the source for the questions, requirements, and
-submission rules. This repository does not duplicate the problem statements in Markdown.
+Student starter code, public tests, and judge tools for the Operating Systems course.
+Questions and submission requirements are provided separately in the course handout.
 
-منبع صورت سؤال‌ها، الزامات و روش تحویل، هندآوت درس با منبع LaTeX است.
-این مخزن شامل کد اولیه، آزمون‌ها و ابزارهای مورد نیاز دانشجویان است.
+این مخزن شامل کد اولیه، آزمون‌ها و ابزارهای داوری است.
+صورت سؤال‌ها و الزامات تحویل جداگانه در هندآوت درس ارائه می‌شوند.
 
-## HW02 — `hw02-v1.0.0`
+## HW02 — `hw02-v1.0.1`
 
 - [Langar starter](assignments/hw02/q2/)
-- [Q3 answer template](assignments/hw02/q3/answers.md)
-- [LaTeX handout fragments](assignments/hw02/handouts/)
 - [آماده‌سازی لینوکس](docs/setup.fa.md) / [Linux setup](docs/setup.en.md)
 - [راهنمای آزمون‌ها](tests/hw02/README.fa.md) / [Test runner guide](tests/hw02/README.en.md)
 

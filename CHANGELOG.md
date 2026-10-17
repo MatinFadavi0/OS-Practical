@@ -1,5 +1,10 @@
 # Releases
 
+## hw02-v1.0.1
+
+- Limit student resources to code, tests, judge tools, and technical usage guides.
+- Remove handout sources and answer templates; the handout is distributed separately.
+
 ## hw02-v1.0.0
 
 - Langar milestone 1: C process-runner starter, fixed CLI, and Makefile.
