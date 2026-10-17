@@ -11,3 +11,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+langar
+test-results.txt
+*.mp4
+submission/
