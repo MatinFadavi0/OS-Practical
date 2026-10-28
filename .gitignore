@@ -15,3 +15,6 @@ langar
 test-results.txt
 *.mp4
 submission/
+.langar-lab/
+.lab-state/
+tools/langar-lab/dist/
