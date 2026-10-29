@@ -1,0 +1,16 @@
+PASS cli_usage: 5/5
+PASS absolute_execution: 5/5
+PASS path_lookup: 5/5
+PASS argument_boundaries: 10/10
+PASS stdin_inheritance: 5/5
+PASS stdout_stderr: 5/5
+PASS working_directory: 5/5
+PASS environment: 5/5
+PASS direct_child: 15/15
+PASS parent_waits: 10/10
+PASS normal_exit_status: 10/10
+PASS signal_exit_status: 5/5
+PASS command_not_found: 5/5
+PASS permission_denied: 5/5
+PASS not_a_directory: 5/5
+Functional score: 100/100
