@@ -1,0 +1,56 @@
+{
+  "assignment": "hw03-q2",
+  "score": 100,
+  "total": 100,
+  "results": [
+    {
+      "id": "hw2_regression",
+      "points": 20,
+      "earned": 20,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "pid_namespace",
+      "points": 20,
+      "earned": 20,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "private_hostname",
+      "points": 15,
+      "earned": 15,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "default_hostname",
+      "points": 15,
+      "earned": 15,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "host_unchanged",
+      "points": 15,
+      "earned": 15,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "isolated_wait",
+      "points": 10,
+      "earned": 10,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "namespace_cli",
+      "points": 5,
+      "earned": 5,
+      "passed": true,
+      "error": null
+    }
+  ]
+}

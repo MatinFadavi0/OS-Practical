@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <sched.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -7,14 +8,42 @@
 
 #include "runner.h"
 
-/* Retain your own previous runner and extend its setup/wait paths.
- * The handout defines this version's required behavior. This is not a solution.
- * HW3 migration: add the options parameter declared in runner.h.
- */
+#define DEFAULT_HOSTNAME "langar"
+
+/* Runs in the child, before exec, only when --isolate is given.
+ * The child is already PID 1 of the new PID namespace (created by the parent).
+ * Here it moves itself into a fresh UTS namespace and only THEN sets the
+ * hostname, so the host's hostname can never be modified.
+ * Returns 0 on success, -1 on failure (error already printed). */
+static int setup_isolated_child(const struct runner_options *options)
+{
+    if (unshare(CLONE_NEWUTS) < 0)
+    {
+        fprintf(stderr, "langar: unshare(CLONE_NEWUTS) failed: %s\n", strerror(errno));
+        return -1;
+    }
+
+    const char *name = options->hostname ? options->hostname : DEFAULT_HOSTNAME;
+    if (sethostname(name, strlen(name)) < 0)
+    {
+        fprintf(stderr, "langar: sethostname failed: %s\n", strerror(errno));
+        return -1;
+    }
+    return 0;
+}
+
 int run_command(char *const argv[], const struct runner_options *options)
 {
-    /* TODO (HW03): use options (isolate, hostname, cpus, rootfs, image, as_mib). */
-    (void)options;
+    int isolate = options && options->isolate;
+
+    /* unshare(CLONE_NEWPID) does not move the caller itself into the new PID
+     * namespace; it only makes the NEXT child created by fork() become PID 1
+     * there. That is why it must happen before fork(). */
+    if (isolate && unshare(CLONE_NEWPID) < 0)
+    {
+        fprintf(stderr, "langar: unshare(CLONE_NEWPID) failed: %s\n", strerror(errno));
+        return 1;
+    }
 
     pid_t pid = fork();
     if (pid < 0)
@@ -25,8 +54,13 @@ int run_command(char *const argv[], const struct runner_options *options)
 
     if (pid == 0)
     {
-        /* Child: replace this process image with the requested program.
+        /* Child: optional namespace setup, then replace this process image.
          * stdin/stdout/stderr, environment and cwd are inherited as-is. */
+        if (isolate && setup_isolated_child(options) < 0)
+        {
+            _exit(1);
+        }
+
         execvp(argv[0], argv);
 
         /* Only reached if execvp failed. */
@@ -35,7 +69,9 @@ int run_command(char *const argv[], const struct runner_options *options)
         _exit((err == ENOENT || err == ENOTDIR) ? 127 : 126);
     }
 
-    /* Parent: block until the child terminates, retrying on EINTR. */
+    /* Parent: block until the child terminates, retrying on EINTR.
+     * The parent stays in the original PID namespace and sees the child by
+     * its normal (host) PID. */
     int status;
     pid_t result;
     do
