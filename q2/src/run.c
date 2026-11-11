@@ -7,8 +7,15 @@
 
 #include "runner.h"
 
-int run_command(char *const command_argv[])
+/* Retain your own previous runner and extend its setup/wait paths.
+ * The handout defines this version's required behavior. This is not a solution.
+ * HW3 migration: add the options parameter declared in runner.h.
+ */
+int run_command(char *const argv[], const struct runner_options *options)
 {
+    /* TODO (HW03): use options (isolate, hostname, cpus, rootfs, image, as_mib). */
+    (void)options;
+
     pid_t pid = fork();
     if (pid < 0)
     {
@@ -20,11 +27,11 @@ int run_command(char *const command_argv[])
     {
         /* Child: replace this process image with the requested program.
          * stdin/stdout/stderr, environment and cwd are inherited as-is. */
-        execvp(command_argv[0], command_argv);
+        execvp(argv[0], argv);
 
         /* Only reached if execvp failed. */
         int err = errno;
-        fprintf(stderr, "langar: %s: %s\n", command_argv[0], strerror(err));
+        fprintf(stderr, "langar: %s: %s\n", argv[0], strerror(err));
         _exit((err == ENOENT || err == ENOTDIR) ? 127 : 126);
     }
 
