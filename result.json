@@ -1,54 +1,47 @@
 {
-  "assignment": "hw03-q2",
+  "assignment": "hw04-q2",
   "score": 100,
   "total": 100,
   "results": [
     {
-      "id": "hw2_regression",
+      "id": "previous_features",
       "points": 20,
       "earned": 20,
       "passed": true,
       "error": null
     },
     {
-      "id": "pid_namespace",
+      "id": "cpu_affinity",
       "points": 20,
       "earned": 20,
       "passed": true,
       "error": null
     },
     {
-      "id": "private_hostname",
+      "id": "address_space_limit",
+      "points": 20,
+      "earned": 20,
+      "passed": true,
+      "error": null
+    },
+    {
+      "id": "bounded_allocation",
       "points": 15,
       "earned": 15,
       "passed": true,
       "error": null
     },
     {
-      "id": "default_hostname",
+      "id": "combined_controls",
       "points": 15,
       "earned": 15,
       "passed": true,
       "error": null
     },
     {
-      "id": "host_unchanged",
-      "points": 15,
-      "earned": 15,
-      "passed": true,
-      "error": null
-    },
-    {
-      "id": "isolated_wait",
+      "id": "invalid_resource_options",
       "points": 10,
       "earned": 10,
-      "passed": true,
-      "error": null
-    },
-    {
-      "id": "namespace_cli",
-      "points": 5,
-      "earned": 5,
       "passed": true,
       "error": null
     }
